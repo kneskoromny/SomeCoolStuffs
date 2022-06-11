@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollPageViewController" customModule="SomeCoolStuffs" customModuleProvider="target">
+            <connections>
+                <outlet property="closeViewButton" destination="wMM-UV-v7U" id="ol5-Kd-B81"/>
+                <outlet property="nextViewButton" destination="euF-ZL-xXz" id="yua-nw-Gi0"/>
+                <outlet property="pageControl" destination="E0o-x2-SOc" id="zTw-Q8-kli"/>
+                <outlet property="scrollView" destination="a7T-YY-BQd" id="qZs-ge-qOr"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7T-YY-BQd">
+                    <rect key="frame" x="0.0" y="44" width="414" height="488"/>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="E0o-x2-SOc">
+                    <rect key="frame" x="149" y="564" width="116" height="26"/>
+                    <color key="pageIndicatorTintColor" systemColor="systemPurpleColor"/>
+                    <color key="currentPageIndicatorTintColor" systemColor="systemOrangeColor"/>
+                    <connections>
+                        <action selector="pageControlDidTapped:" destination="-1" eventType="valueChanged" id="60L-Dg-AmK"/>
+                    </connections>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euF-ZL-xXz">
+                    <rect key="frame" x="103.5" y="622" width="207" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="nextButtonDidTapped:" destination="-1" eventType="touchUpInside" id="UBT-Ih-z9u"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMM-UV-v7U">
+                    <rect key="frame" x="103.5" y="669" width="207" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    <connections>
+                        <action selector="closeButtonDidTapped:" destination="-1" eventType="touchUpInside" id="XQ7-Sn-NKj"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="E0o-x2-SOc" firstAttribute="top" secondItem="a7T-YY-BQd" secondAttribute="bottom" constant="32" id="H65-Rh-AYx"/>
+                <constraint firstItem="a7T-YY-BQd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KjP-wD-675"/>
+                <constraint firstItem="wMM-UV-v7U" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NVZ-by-IEG"/>
+                <constraint firstItem="a7T-YY-BQd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="OWl-pW-DRz"/>
+                <constraint firstItem="euF-ZL-xXz" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="RJX-wh-ImG"/>
+                <constraint firstItem="euF-ZL-xXz" firstAttribute="top" secondItem="E0o-x2-SOc" secondAttribute="bottom" constant="32" id="RYu-qN-j1v"/>
+                <constraint firstItem="E0o-x2-SOc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YyD-bZ-AlB"/>
+                <constraint firstItem="wMM-UV-v7U" firstAttribute="top" secondItem="euF-ZL-xXz" secondAttribute="bottom" constant="16" id="cxn-DH-fWx"/>
+                <constraint firstItem="euF-ZL-xXz" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="ghe-r7-dRX"/>
+                <constraint firstItem="wMM-UV-v7U" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="lXy-eE-Htq"/>
+                <constraint firstItem="a7T-YY-BQd" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.544643" id="tKQ-TX-vAS"/>
+                <constraint firstItem="a7T-YY-BQd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vRI-dT-TRW"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="131.91964285714286"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
