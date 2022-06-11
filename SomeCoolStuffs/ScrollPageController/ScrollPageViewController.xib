@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ScrollPageViewController" customModule="SomeCoolStuffs" customModuleProvider="target">
             <connections>
-                <outlet property="closeViewButton" destination="wMM-UV-v7U" id="ol5-Kd-B81"/>
                 <outlet property="nextViewButton" destination="euF-ZL-xXz" id="yua-nw-Gi0"/>
                 <outlet property="pageControl" destination="E0o-x2-SOc" id="zTw-Q8-kli"/>
                 <outlet property="scrollView" destination="a7T-YY-BQd" id="qZs-ge-qOr"/>
@@ -34,19 +33,15 @@
                     </connections>
                 </pageControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="euF-ZL-xXz">
-                    <rect key="frame" x="103.5" y="622" width="207" height="31"/>
+                    <rect key="frame" x="62" y="622" width="290" height="58"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="euF-ZL-xXz" secondAttribute="height" multiplier="5:1" id="XSV-ok-FVU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
                     <connections>
                         <action selector="nextButtonDidTapped:" destination="-1" eventType="touchUpInside" id="UBT-Ih-z9u"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMM-UV-v7U">
-                    <rect key="frame" x="103.5" y="669" width="207" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    <connections>
-                        <action selector="closeButtonDidTapped:" destination="-1" eventType="touchUpInside" id="XQ7-Sn-NKj"/>
                     </connections>
                 </button>
             </subviews>
@@ -55,14 +50,11 @@
             <constraints>
                 <constraint firstItem="E0o-x2-SOc" firstAttribute="top" secondItem="a7T-YY-BQd" secondAttribute="bottom" constant="32" id="H65-Rh-AYx"/>
                 <constraint firstItem="a7T-YY-BQd" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KjP-wD-675"/>
-                <constraint firstItem="wMM-UV-v7U" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="NVZ-by-IEG"/>
                 <constraint firstItem="a7T-YY-BQd" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="OWl-pW-DRz"/>
                 <constraint firstItem="euF-ZL-xXz" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="RJX-wh-ImG"/>
                 <constraint firstItem="euF-ZL-xXz" firstAttribute="top" secondItem="E0o-x2-SOc" secondAttribute="bottom" constant="32" id="RYu-qN-j1v"/>
                 <constraint firstItem="E0o-x2-SOc" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="YyD-bZ-AlB"/>
-                <constraint firstItem="wMM-UV-v7U" firstAttribute="top" secondItem="euF-ZL-xXz" secondAttribute="bottom" constant="16" id="cxn-DH-fWx"/>
-                <constraint firstItem="euF-ZL-xXz" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="ghe-r7-dRX"/>
-                <constraint firstItem="wMM-UV-v7U" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.5" id="lXy-eE-Htq"/>
+                <constraint firstItem="euF-ZL-xXz" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.7" id="ghe-r7-dRX"/>
                 <constraint firstItem="a7T-YY-BQd" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.544643" id="tKQ-TX-vAS"/>
                 <constraint firstItem="a7T-YY-BQd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vRI-dT-TRW"/>
             </constraints>

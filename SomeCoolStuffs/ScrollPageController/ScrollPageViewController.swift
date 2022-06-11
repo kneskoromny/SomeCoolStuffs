@@ -7,23 +7,22 @@ class ScrollPageViewController: UIViewController {
     private enum Const {
         static let currentPage = 0
         static let cornerRadius: CGFloat = 10
+        
+        static let title = "Привет, Винни!"
+        
+        enum ButtonTitle {
+            static let process = "Показать Винни!"
+            static let end = "На этом все :]"
+        }
     }
     
     // MARK: - Outlets
     
-    @IBOutlet private var mainLabel: UILabel?
     @IBOutlet private var scrollView: UIScrollView?
     @IBOutlet private var pageControl: UIPageControl?
     @IBOutlet private var nextViewButton: UIButton?
-    @IBOutlet private var closeViewButton: UIButton?
     
     // MARK: - Private Properties
-    
-    private enum ViewState {
-        case load
-        case process
-        case end
-    }
     
     private var viewList = [
         UIImage(named: "1"),
@@ -32,6 +31,10 @@ class ScrollPageViewController: UIViewController {
         UIImage(named: "4"),
         UIImage(named: "5")
     ]
+    private enum ViewState {
+        case process
+        case end
+    }
     private var currentViewIndex = 0
     private var viewHeight: CGFloat = 0
     
@@ -40,36 +43,31 @@ class ScrollPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //changeUI(forState: .load)
+        setupNavBar()
         setupPageControl()
-        setupButtons()
+        setupButton()
+        changeUI(forState: .process)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupScrollView()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         fillScrollView()
-        viewHeight = view.frame.height
     }
       
     // MARK: - Private Methods
     
-    private func setupPageControl() {
-        pageControl?.currentPage = Const.currentPage
-        pageControl?.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+    private func setupNavBar() {
+        title = Const.title
     }
     
-    private func setupButtons() {
+    private func setupPageControl() {
+        pageControl?.currentPage = Const.currentPage
+        pageControl?.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+    }
+    
+    private func setupButton() {
         nextViewButton?.layer.cornerRadius = Const.cornerRadius
-        nextViewButton?.setTitleColor(UIColor.white, for: .normal)
-        nextViewButton?.backgroundColor = UIColor.systemPurple
-        
-        closeViewButton?.layer.cornerRadius = Const.cornerRadius
-        closeViewButton?.setTitleColor(UIColor.white, for: .normal)
-        nextViewButton?.backgroundColor = UIColor.systemOrange
     }
     
     private func setupScrollView() {
@@ -80,24 +78,26 @@ class ScrollPageViewController: UIViewController {
         scrollView?.isScrollEnabled = true
         
         if let height = scrollView?.frame.height {
-            scrollView?.contentSize = CGSize(width: view.frame.width * CGFloat(viewList.count),
+            let calculatedWidth = view.frame.width * CGFloat(viewList.count)
+            scrollView?.contentSize = CGSize(width: calculatedWidth,
                                              height: height)
         }
     }
     
     private func fillScrollView() {
+        let viewWidth = view.frame.width
+        
         guard let width = scrollView?.frame.width,
               let height = scrollView?.frame.height else {
             return
         }
         for i in 0 ..< viewList.count {
             let cartoonView = CartoonView()
-            cartoonView.frame = CGRect(x: width * CGFloat(i), y: 0, width: view.frame.width, height: height)
+            cartoonView.frame = CGRect(x: width * CGFloat(i), y: 0, width: viewWidth, height: height)
             cartoonView.configure(withImage: viewList[i]!)
             scrollView?.addSubview(cartoonView)
         }
         pageControl?.numberOfPages = viewList.count
-        changeUI(forState: .process)
     }
     
     private func changeCurrentView() {
@@ -106,7 +106,7 @@ class ScrollPageViewController: UIViewController {
         pageControl?.currentPage = currentViewIndex
         
         var offset = scrollView.contentOffset
-        if scrollView.contentOffset.x < view.bounds.width * CGFloat(currentViewIndex) {
+        if offset.x < view.bounds.width * CGFloat(currentViewIndex) {
             offset.x += view.bounds.width
         } else {
             offset.x -= view.bounds.width
@@ -126,15 +126,20 @@ class ScrollPageViewController: UIViewController {
     }
     
     private func changeUI(forState state: ViewState) {
-        nextViewButton?.isHidden = state == .end
-        closeViewButton?.backgroundColor = state == .end
-        ? UIColor.systemOrange
-        : UIColor.systemYellow
+        let purple = UIColor.systemPurple
+        let orange = UIColor.systemOrange
         
-        let titleColor = state == .end
-        ? UIColor.black
-        : UIColor.white
-        closeViewButton?.setTitleColor(titleColor, for: .normal)
+        nextViewButton?.backgroundColor = state == .process
+        ? purple
+        : orange
+        switch state {
+        case .process:
+            nextViewButton?.setTitle(Const.ButtonTitle.process, for: .normal)
+            nextViewButton?.setTitleColor(orange, for: .normal)
+        case .end:
+            nextViewButton?.setTitle(Const.ButtonTitle.end, for: .normal)
+            nextViewButton?.setTitleColor(purple, for: .normal)
+        }
     }
     
     // MARK: - Actions
@@ -142,9 +147,6 @@ class ScrollPageViewController: UIViewController {
     @IBAction func nextButtonDidTapped(_ sender: UIButton) {
         currentViewIndex += 1
         changeCurrentView()
-    }
-    
-    @IBAction func closeButtonDidTapped(_ sender: UIButton) {
     }
     
     @IBAction func pageControlDidTapped(_ sender: UIPageControl) {
